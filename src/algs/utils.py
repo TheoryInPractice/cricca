@@ -232,6 +232,35 @@ def update(Aij, W, v, Bj, w_deque):
             w_deque.appendleft(W)
 
 
- 
+ class PatternRows:
+    '''
+    If the full cartesian product is a set A, then this function 
+    generates A[index], rather than creating all values of the 
+    cartesian product at once.
+    '''
+    def __init__(self, k):
+        self.sets = [0,1]
+        self.divs = []
+        self.mod = 2 # size of each list = 2
+        self.k = k
+        self.maxSize = 2 ** self.k
+        self.init()
+
+    def init(self):
+        length = self.k
+        factor = 1
+        for i in range((length - 1), -1, -1):
+            items = len(self.sets)
+            self.divs.insert(0, factor)
+            factor = factor * items
+                    
+    def entryAt(self, n):
+        length = self.k
+        if n < 0 or n >= self.maxSize:
+            raise IndexError
+        combination = []
+        for i in range(0, length):
+            combination.append(self.sets[ int(math.floor(n / self.divs[i])) % self.mod])
+        return combination
  
 
