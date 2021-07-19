@@ -22,7 +22,7 @@ class Bookeeper:
         self.i = 0
         
         # for extending basis
-        self.cart_V = utils.LazyCartesianProduct(k)
+        self.cart_V = utils.PatternRows(k)
         
         # each index represents a basis row, the value represents the index in cartV of 
         # current pattern, each time we need a new pattern row, the index is incremented 

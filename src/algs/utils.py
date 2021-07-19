@@ -232,7 +232,7 @@ def update(Aij, W, v, Bj, w_deque):
             w_deque.appendleft(W)
 
 
- class PatternRows:
+class PatternRows:
     '''
     If the full cartesian product is a set A, then this function 
     generates A[index], rather than creating all values of the 

@@ -5,10 +5,9 @@
 import os, random, sys
 import numpy as np
 import pandas as pd
-import bio_datagen as bio_datagen
-
 from os.path import dirname,realpath
 
+import bio_datagen as bio_datagen
 
 def get_max_fileid(dir_name):
     # to give each graph a unique id, find the max id in the directory
@@ -41,7 +40,7 @@ def create_tf_corpus(k, num_seeds, dir_name):
     '''
     f_id = get_max_fileid(dir_name)
     
-    dat_fname = 'generator_dat/TF_dat/gene_TF_dat.csv'
+    dat_fname = 'generator_dat/gene_TF_dat.csv'
     dat = pd.read_csv(dat_fname, delimiter=',')
     
     for seed in range(num_seeds):
@@ -79,8 +78,8 @@ def create_lv_corpus(k, num_seeds, dir_name):
     '''
     f_id = get_max_fileid(dir_name)
     
-    z_fname = 'generator_dat/LV_dat/multiplier_model_z.tsv'
-    sum_fname = 'generator_dat/LV_dat/multiplier_model_summary.tsv'
+    z_fname = 'generator_dat/multiplier_model_z.tsv'
+    sum_fname = 'generator_dat/multiplier_model_summary.tsv'
     
     z_tsv = pd.read_csv(z_fname, delimiter='\t')
     sum_tsv = pd.read_csv(sum_fname, delimiter='\t') 
@@ -118,8 +117,8 @@ def create_corpora():
     if not os.path.exists(lv_dir_name):
         os.makedirs(lv_dir_name)
     
-    print('Starting Creation of TF Corpus')
-    create_tf_corpus(k, num_seeds, tf_dir_name)
+    #print('Starting Creation of TF Corpus')
+    #create_tf_corpus(k, num_seeds, tf_dir_name)
     
     print('\n\nStarting Creation of LV Corpus')
     create_lv_corpus(k, num_seeds, lv_dir_name)
