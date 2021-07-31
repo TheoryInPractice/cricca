@@ -1,7 +1,18 @@
 
 import os, re
- 
+import networkx as nx
+import numpy as np
 
+
+def get_wildcard_adjacency(G):
+    nodes = list(G.nodes())
+    A = nx.to_pandas_adjacency(G, nodelist=nodes, dtype=int)
+    for i, row in A.iterrows():
+        A.loc[i,i] = np.inf
+        
+    return A
+ 
+ 
 def get_files(dir_name, ftype):
     files = []
     if os.path.isfile(dir_name):
