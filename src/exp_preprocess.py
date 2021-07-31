@@ -87,9 +87,9 @@ def main():
     
 
     # run tf graphs
-    #print('\nPreprocessing TF graphs')
-    #run(tf_dirname, tf_out_dirname, 
-         #first_seed, second_seed)
+    print('\nPreprocessing TF graphs')
+    run(tf_dirname, tf_out_dirname, 
+         first_seed, second_seed)
     
     # run lv graphs
     print('\nPreprocessing LV graphs')
