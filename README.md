@@ -12,16 +12,26 @@ scipy
 
 gurobi
 
+# To Run Your Own Data
+
+- From /cricca direcotory, run 'python main.py --graph_filename [your_fname.txt] --algorithm [either 'wecp', 'ipart', or 'lp'] --parameter [integer parameter value]'
+- For information on other input arguments, run 'python main.py --help'
+
+
+# To Recreate Paper Experiments
+
 ## 1. Graph Generation
-Steps to generate the same corpus used in the paper experiments:
+Steps to generate the same corpus used in the paper experiments (see [paper](https://arxiv.org/abs/2106.00657) for additional graph generation details.):
 
-    1. Visit .... and .... to download the files ...., ...., ....
+    1. Download Transcription Factor Base Data: [TF Data](http://www.tfacts.org/TFactS-new/TFactS-v2/tfacts/data/Catalogues.xls) 
 
-    2. Place the files named 'multiplier_model_z.tsv', 'multiplier_model_summary.tsv' and 'gene_TF_dat.csv' in generator_dat directory.
+    2. Open Catalog.xls, save sheet 'TFactS_sign_less_version2' as 'gene_TF_dat.csv' in generator_dat directory. 
 
-        - The 'multiplier_*' files are used to create the LV (latent variable) based graphs, and 'gene_TF_dat.csv' is used to create TF (transcription factor) based graphs. See [paper](https://arxiv.org/abs/2106.00657) for additional details.    
+    3. Download Latent Variable Base Data (Note file is 84GB): [LV Data](https://ndownloader.figshare.com/files/14080160)
 
-    3. From /cricca directory, run 'python src/graph_gen/gen_acda21_corpus.py'
+    4. Place the files named 'multiplier_model_z.tsv' and 'multiplier_model_summary.tsv' in generator_dat directory.
+
+    5. From /cricca directory, run 'python src/graph_gen/gen_acda21_corpus.py'
 
 Both TF and LV graphs will now exist in the src/data/pre_preprocessing directory. 
 
