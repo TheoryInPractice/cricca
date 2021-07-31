@@ -19,15 +19,6 @@ def get_prerun_data(prerun_files, kern_fn):
     return partial_kerndat
 
 
-def get_wildcard_adjacency(G):
-    nodes = list(G.nodes())
-    A = nx.to_pandas_adjacency(G, nodelist=nodes, dtype=int)
-    for i, row in A.iterrows():
-        A.loc[i,i] = np.inf
-        
-    return A
-
-
 def run_kernel(G, A, cliq_verts, k_input):     
     '''
     
@@ -185,9 +176,7 @@ def run(dirname, out_dirname, first_seed, last_seed, k_orig_max, k_distinct_max,
             output = pickle.load(infile)
             
         # collect + write out data
-        out = { #'pre_preprocessing'  : output['pre_preprocessing'],
-                #'post_preprocessing' : output['post_preprocessing'],
-                'true_total_kernel'     : None, 
+        out = { 'true_total_kernel'     : None, 
                 'true_distinct_kernel'  : None,
                 'guess_kernels'         : None}
         
@@ -211,7 +200,7 @@ def run(dirname, out_dirname, first_seed, last_seed, k_orig_max, k_distinct_max,
             if run_total:
                 print('--------- running true total kernel')
                 G_total = G.copy()
-                A_total = get_wildcard_adjacency(G_total)
+                A_total = utils_misc.get_wildcard_adjacency(G_total)
                 cvs = output['post_preprocessing']['clique_vertices']
                 cliq_verts = copy.deepcopy(cvs)
                 
@@ -224,7 +213,7 @@ def run(dirname, out_dirname, first_seed, last_seed, k_orig_max, k_distinct_max,
             if run_dist:
                 print('--------- running true distinct kernel')
                 G_distinct = G.copy()
-                A_distinct = get_wildcard_adjacency(G_distinct)
+                A_distinct = utils_misc.get_wildcard_adjacency(G_distinct)
                 cvs = output['post_preprocessing']['clique_vertices']
                 cliq_verts = copy.deepcopy(cvs)
                 
@@ -250,7 +239,7 @@ def run(dirname, out_dirname, first_seed, last_seed, k_orig_max, k_distinct_max,
                 if run_guess:
                     print('--------- running guess kernel')
                     G_guess = G.copy()
-                    A_guess = get_wildcard_adjacency(G_guess)
+                    A_guess = utils_misc.get_wildcard_adjacency(G_guess)
                     cvs = output['post_preprocessing']['clique_vertices']
                     cliq_verts = copy.deepcopy(cvs)
                     
