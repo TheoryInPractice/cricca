@@ -8,10 +8,10 @@ numpy, pandas, networkx, scipy, gurobi
 
 - From /cricca direcotory, run 
         
-        python main.py --graph_filename [your_fname.txt] --algorithm [either 'wecp', 'ipart', or 'lp'] --parameter [integer parameter value]
+        python src,main.py --graph_filename [your_fname.txt] --algorithm [either 'wecp', 'ipart', or 'lp'] --parameter [integer parameter value]
 - For information on other input arguments, run 
     
-        python main.py --help
+        python src/main.py --help
 
 
 ## To Recreate Paper Experiments
@@ -52,6 +52,8 @@ To kernelize each preprocessed graph with k [2-11] (after pre-processing), from 
 To run each matrix decomposition algorithm including wecp (original algorithm by Feldmann et al. 2020), ipart (integer partitioning based), and lp (linear programming based) algorithms, from /cricca directory, run:
 
     python src/exp_runbsd.py -f 0 -l 19
+    
+Note: timeout code in function run_bsd() in file exp_runbsd.py only works on unix systems (e.g. signal.signal/alarm(....) function calls). 
 
 ### 5. CSV Creation
 To combine all data saved in pickle files (after running exp_runbsd.py)
